@@ -38,46 +38,56 @@ function CartRow({
   onDragEnd: () => void;
 }) {
   const item = cartItem(line.id);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [sliding, setSliding] = useState(false);
-  const swipe = useRef({ x: 0, y: 0, pointer: -1, axis: "" as "" | "x" | "y" });
+  const swipe = useRef({ x: 0, y: 0, pointer: -1, dragging: false });
   const pressing = useRef(false);
 
   return (
-    <div className="relative overflow-hidden border-b border-line" data-line-id={line.id}>
+    <div className={`relative border-b border-line ${sliding ? "z-20 overflow-visible" : "overflow-hidden"}`} data-line-id={line.id}>
       <div className="absolute inset-y-0 right-0 flex w-28 items-center justify-center bg-lime text-[12px] font-bold text-ink">
         Remove
       </div>
       <article
-        className={`relative flex touch-pan-y items-center gap-4 bg-ink py-5 sm:gap-5 ${active ? "opacity-70" : ""}`}
-        style={{ transform: `translateX(${offset}px)`, transition: sliding ? "none" : "transform 180ms ease" }}
+        className={`relative flex touch-none items-center gap-4 bg-ink py-5 sm:gap-5 ${active ? "opacity-70" : ""} ${sliding ? "z-10" : ""}`}
+        style={{
+          transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
+          transition: sliding ? "none" : "transform 220ms ease",
+        }}
         onPointerDown={(event) => {
           if ((event.target as Element).closest("button, a, input")) return;
-          swipe.current = { x: event.clientX, y: event.clientY, pointer: event.pointerId, axis: "" };
+          swipe.current = { x: event.clientX, y: event.clientY, pointer: event.pointerId, dragging: false };
           setSliding(true);
         }}
         onPointerMove={(event) => {
           if (event.pointerId !== swipe.current.pointer) return;
           const dx = event.clientX - swipe.current.x;
           const dy = event.clientY - swipe.current.y;
-          if (!swipe.current.axis && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
-            swipe.current.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
-            if (swipe.current.axis === "x") event.currentTarget.setPointerCapture(event.pointerId);
+          if (!swipe.current.dragging && Math.hypot(dx, dy) <= 6) return;
+          swipe.current.dragging = true;
+          try {
+            event.currentTarget.setPointerCapture(event.pointerId);
+          } catch {
+            /* The pointer can already be gone. */
           }
-          if (swipe.current.axis === "x") setOffset(Math.max(-140, Math.min(0, dx)));
+          setOffset({ x: dx, y: dy });
         }}
         onPointerUp={(event) => {
           if (event.pointerId !== swipe.current.pointer) return;
           const dx = event.clientX - swipe.current.x;
+          const dy = event.clientY - swipe.current.y;
+          const dragged = swipe.current.dragging;
           swipe.current.pointer = -1;
+          swipe.current.dragging = false;
           setSliding(false);
-          if (swipe.current.axis === "x" && dx < -88) onRemove();
-          setOffset(0);
+          if (dragged && dx < -88 && Math.abs(dx) > Math.abs(dy)) onRemove();
+          setOffset({ x: 0, y: 0 });
         }}
         onPointerCancel={() => {
           swipe.current.pointer = -1;
+          swipe.current.dragging = false;
           setSliding(false);
-          setOffset(0);
+          setOffset({ x: 0, y: 0 });
         }}
       >
         <button
@@ -244,7 +254,7 @@ export function CartPage() {
                 <p className="font-mono text-[11px] leading-[1.5] text-ash">ONE-TIME PURCHASE</p>
               </div>
               <p className="text-[12px] leading-[1.65] text-mist">
-                Drag the grip to reorder a pack, or swipe the row left to remove it. Quantities are per 12-pack, not per can.
+                Drag a pack in any direction, use the grip to reorder, or swipe it left to remove it. Quantities are per 12-pack, not per can.
               </p>
             </div>
 

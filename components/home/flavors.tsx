@@ -54,7 +54,7 @@ export function Flavors() {
         </div>
         <div
           ref={scroller}
-          className="drag-scroll flavor-scroller flex touch-pan-y gap-5 overflow-x-auto"
+          className="drag-scroll flavor-scroller flex gap-5 overflow-x-auto"
         >
           {products.map((product) => (
             <ProductCard key={product.name} product={product} />

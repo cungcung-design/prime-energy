@@ -96,7 +96,7 @@ export function AccountPage() {
             </Link>
           )}
         </div>
-        <div ref={tabsScroller} className="drag-scroll flex touch-pan-y gap-9 overflow-x-auto border-b border-line">
+        <div ref={tabsScroller} className="drag-scroll flex gap-9 overflow-x-auto border-b border-line">
           {tabs.map((item) => {
             const selected = tab === item.id;
             return (

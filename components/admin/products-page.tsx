@@ -81,7 +81,7 @@ export function ProductsPage() {
         </label>
         <p className="font-mono text-[11px] leading-[1.5] text-ash">{filtered.length} PRODUCTS</p>
       </div>
-      <div ref={tableScroller} className="drag-scroll touch-pan-y overflow-x-auto border border-line">
+      <div ref={tableScroller} className="drag-scroll overflow-x-auto border border-line">
         <div className="min-w-[980px]">
           <div className="flex h-[46px] items-start gap-5 bg-[#1a1e19] px-5 pt-4 text-[11px] text-ash">
             <p className="w-[370px]">Product</p>

@@ -64,7 +64,7 @@ export function AdminShell({ crumb, children }: { crumb: string; children: React
           <p className="font-display text-[38px] leading-none font-extrabold italic">PRIME</p>
           <p className="mt-2.5 font-mono text-[11px] leading-[1.5] text-ash">STORE ADMIN</p>
         </Link>
-        <nav ref={navScroller} className="drag-scroll flex touch-pan-y gap-2 overflow-x-auto px-4 py-4 lg:flex-col lg:gap-2 lg:overflow-visible lg:px-0 lg:py-0">
+        <nav ref={navScroller} className="drag-scroll flex gap-2 overflow-x-auto px-4 py-4 lg:flex-col lg:gap-2 lg:overflow-visible lg:px-0 lg:py-0">
           {links.map((link) => {
             const active = link.section === section;
             return (

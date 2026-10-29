@@ -50,9 +50,10 @@ body {
 
 .drag-scroll {
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
+  overscroll-behavior: contain;
   scroll-snap-type: x proximity;
   cursor: grab;
+  touch-action: none;
 }
 
 .drag-scroll.is-dragging {
@@ -60,6 +61,13 @@ body {
   scroll-behavior: auto;
   scroll-snap-type: none;
   user-select: none;
+}
+
+.drag-scroll > .is-drag-target,
+.drag-scroll.is-drag-target {
+  position: relative;
+  z-index: 6;
+  touch-action: none;
 }
 
 .drag-scroll > * {

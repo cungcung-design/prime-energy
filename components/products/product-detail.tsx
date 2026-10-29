@@ -93,7 +93,7 @@ export function ProductDetail({ slug }: { slug: string }) {
   const flavor = catalogFlavors.find((item) => item.slug === slug) ?? catalogFlavors[0];
   const { add, preview } = useCart();
   const [imageIndex, setImageIndex] = useState(0);
-  const [dragX, setDragX] = useState(0);
+  const [drag, setDrag] = useState({ x: 0, y: 0 });
   const [imageDragging, setImageDragging] = useState(false);
   const imageSwipe = useRef({ x: 0, y: 0, pointer: -1 });
   const thumbs = useDragScroll<HTMLDivElement>();
@@ -202,42 +202,48 @@ export function ProductDetail({ slug }: { slug: string }) {
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
           <div className="flex w-full flex-col gap-4 lg:w-[624px] lg:shrink-0">
             <div
-              className="relative h-[420px] touch-pan-y overflow-hidden sm:h-[520px] lg:h-[640px]"
+              className={`relative h-[420px] touch-none sm:h-[520px] lg:h-[640px] ${imageDragging ? "z-20 overflow-visible" : "overflow-hidden"}`}
               onPointerDown={(event) => {
-                if (gallery.length < 2) return;
                 if ((event.target as Element).closest("button, a")) return;
                 imageSwipe.current = { x: event.clientX, y: event.clientY, pointer: event.pointerId };
                 setImageDragging(true);
+                setDrag({ x: 0, y: 0 });
               }}
               onPointerMove={(event) => {
                 if (event.pointerId !== imageSwipe.current.pointer) return;
                 const dx = event.clientX - imageSwipe.current.x;
                 const dy = event.clientY - imageSwipe.current.y;
-                if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
-                  event.currentTarget.setPointerCapture(event.pointerId);
-                  setDragX(dx);
+                if (Math.hypot(dx, dy) > 6) {
+                  try {
+                    event.currentTarget.setPointerCapture(event.pointerId);
+                  } catch {
+                    /* The pointer can already be gone. */
+                  }
+                  setDrag({ x: dx, y: dy });
                 }
               }}
               onPointerUp={(event) => {
                 if (event.pointerId !== imageSwipe.current.pointer) return;
                 const dx = event.clientX - imageSwipe.current.x;
+                const dy = event.clientY - imageSwipe.current.y;
                 imageSwipe.current.pointer = -1;
                 setImageDragging(false);
-                setDragX(0);
-                if (dx <= -48) setImageIndex((index) => Math.min(gallery.length - 1, index + 1));
-                else if (dx >= 48) setImageIndex((index) => Math.max(0, index - 1));
+                setDrag({ x: 0, y: 0 });
+                if (gallery.length < 2 || Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
+                if (dx < 0) setImageIndex((index) => Math.min(gallery.length - 1, index + 1));
+                else setImageIndex((index) => Math.max(0, index - 1));
               }}
               onPointerCancel={() => {
                 imageSwipe.current.pointer = -1;
                 setImageDragging(false);
-                setDragX(0);
+                setDrag({ x: 0, y: 0 });
               }}
             >
               <div
                 className="absolute inset-0"
                 style={{
-                  transform: `translateX(${dragX}px)`,
-                  transition: imageDragging ? "none" : "transform 180ms ease",
+                  transform: `translate3d(${drag.x}px, ${drag.y}px, 0)`,
+                  transition: imageDragging ? "none" : "transform 220ms ease",
                 }}
               >
                 <Image
@@ -251,7 +257,7 @@ export function ProductDetail({ slug }: { slug: string }) {
               </div>
               <p className="pointer-events-none absolute top-6 left-6 font-mono text-[11px] text-lime">{overlay}</p>
             </div>
-            <div ref={thumbs} className="drag-scroll flex touch-pan-y gap-3 overflow-x-auto">
+            <div ref={thumbs} className="drag-scroll flex gap-3 overflow-x-auto">
               {gallery.map((image, index) => (
                 <button
                   key={image.src}

@@ -13,7 +13,7 @@ export function packLine(order: Pick<AdminOrder, "packs" | "cans">) {
 export function OrderTable({ orders }: { orders: AdminOrder[] }) {
   const scroller = useDragScroll<HTMLDivElement>();
   return (
-    <div ref={scroller} className="drag-scroll touch-pan-y overflow-x-auto border border-line">
+    <div ref={scroller} className="drag-scroll overflow-x-auto border border-line">
       <div className="min-w-[900px]">
         <div className="flex h-[46px] items-start gap-4 bg-[#1a1e19] px-[18px] pt-4 text-[11px] text-ash">
           <p className="w-[140px]">Order</p>
