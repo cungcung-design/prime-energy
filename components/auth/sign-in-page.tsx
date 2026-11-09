@@ -25,16 +25,14 @@ export function SignInPage() {
           <ImagePanel src="/images/account/sign-in.png" alt="PRIME can on dark stone" />
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(9,11,10,0.06)] to-[rgba(9,11,10,0.94)]" />
           <div className="absolute inset-x-6 bottom-7 flex flex-col gap-5 sm:inset-x-9 sm:bottom-9">
-            <p className="font-mono text-[11px] leading-[1.5] text-lime">THE INNER CIRCUIT / ALWAYS FORWARD</p>
-            <h2 className="font-display text-[clamp(56px,8vw,88px)] leading-none font-extrabold">
-              SAME ENERGY
+            <p className="font-mono text-[11px] leading-[1.5] text-lime">NEXT-GENERATION ENERGY / ZERO COMPROMISE</p>
+            <h2 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px]">
+              WELCOME
               <br />
-              WELCOME BACK
+              <span className="text-lime italic">BACK</span>
             </h2>
-            <p className="text-[14px] leading-[1.65]">
-              Your next drop. Your order history.
-              <br />
-              All in one place. All at your pace.
+            <p className="text-[15px] leading-[1.65]">
+              Experience the power of PRIME Energy. Bold flavor. Zero sugar.
             </p>
           </div>
         </section>
@@ -61,8 +59,8 @@ export function SignInPage() {
             {" / "}
             SIGN IN
           </p>
-          <h1 className="font-display text-[clamp(52px,8vw,76px)] leading-none font-extrabold">BACK IN THE MIX</h1>
-          <p className="text-[14px] leading-[1.65] text-mist">Sign in to your PRIME account.</p>
+          <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">WELCOME BACK</h1>
+          <p className="text-[15px] leading-[1.65] text-mist">Sign in and pick up where you left off.</p>
           <label className="flex flex-col gap-2">
             <span className="font-mono text-[11px] leading-[1.5] text-mist">EMAIL ADDRESS</span>
             <input
@@ -100,18 +98,18 @@ export function SignInPage() {
             </Link>
           </div>
           {error ? <p className="text-[12px] leading-[1.5] text-lime">{error}</p> : null}
-          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink">
+          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink">
             Sign In
             <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />
           </button>
           <div className="h-px bg-line" />
-          <p className="text-[13px] text-mist">
-            New to the circuit?{" "}
-            <Link href="/sign-up" className="font-medium text-lime">
-              Create an account →
+          <p className="text-[15px] leading-[1.65] text-mist">
+            New here?{" "}
+            <Link href="/sign-up" className="font-semibold text-lime">
+              Join the Inner Circuit
             </Link>
           </p>
-          <Link href="/checkout" className="inline-flex h-[54px] items-center justify-between border border-line px-5 text-[13px] font-bold">
+          <Link href="/checkout" className="inline-flex h-[54px] items-center justify-between border border-line px-5 text-[12px] font-bold">
             Continue to Checkout as guest
             <Icon src="/icons/arrow-up-right-18.svg" width={18} height={18} />
           </Link>

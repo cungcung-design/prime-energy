@@ -4,9 +4,10 @@ type IconProps = {
   src: string;
   width: number;
   height: number;
+  className?: string;
 };
 
-export function Icon({ src, width, height }: IconProps) {
+export function Icon({ src, width, height, className }: IconProps) {
   return (
     <Image
       src={src}
@@ -14,7 +15,7 @@ export function Icon({ src, width, height }: IconProps) {
       width={width}
       height={height}
       unoptimized
-      className="shrink-0"
+      className={`shrink-0 ${className ?? ""}`}
     />
   );
 }

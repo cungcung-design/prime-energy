@@ -42,22 +42,22 @@ export function ContactForm() {
   }
 
   if (sent) {
-    return <p className="border border-line bg-panel p-6 text-sm text-paper">Message received. We will reply to the email you entered.</p>;
+    return <p className="border border-line bg-panel p-6 text-[15px] leading-[1.65] text-paper">Message received. We will reply to the email you entered.</p>;
   }
 
   return (
     <form onSubmit={submit} className="flex max-w-[640px] flex-col gap-5 border border-line bg-panel p-6">
       <label className="flex flex-col gap-2 text-[11px] font-mono text-ash">
         NAME
-        <input value={name} onChange={(event) => setName(event.target.value)} className="h-12 border border-line bg-ink px-4 text-sm text-paper" />
+        <input value={name} onChange={(event) => setName(event.target.value)} className="h-12 border border-line bg-ink px-4 text-[16px] text-paper" />
       </label>
       <label className="flex flex-col gap-2 text-[11px] font-mono text-ash">
         EMAIL
-        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="h-12 border border-line bg-ink px-4 text-sm text-paper" />
+        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className="h-12 border border-line bg-ink px-4 text-[16px] text-paper" />
       </label>
       <label className="flex flex-col gap-2 text-[11px] font-mono text-ash">
         TOPIC
-        <select value={selected} onChange={(event) => setSelected(event.target.value)} className="h-12 border border-line bg-ink px-4 text-sm text-paper">
+        <select value={selected} onChange={(event) => setSelected(event.target.value)} className="h-12 border border-line bg-ink px-4 text-[16px] text-paper">
           {topics.map((item) => (
             <option key={item.id} value={item.id}>
               {item.label}
@@ -67,10 +67,10 @@ export function ContactForm() {
       </label>
       <label className="flex flex-col gap-2 text-[11px] font-mono text-ash">
         MESSAGE
-        <textarea value={body} onChange={(event) => setBody(event.target.value)} rows={5} className="border border-line bg-ink px-4 py-3 text-sm text-paper" />
+        <textarea value={body} onChange={(event) => setBody(event.target.value)} rows={5} className="border border-line bg-ink px-4 py-3 text-[16px] text-paper" />
       </label>
       {message ? <p className="text-xs text-[#ff9a8c]">{message}</p> : null}
-      <button type="submit" disabled={pending} className="inline-flex h-12 items-center justify-center bg-lime px-6 text-[13px] font-bold text-ink disabled:opacity-50">
+      <button type="submit" disabled={pending} className="inline-flex h-[54px] items-center justify-center bg-lime px-6 text-[12px] font-bold text-ink disabled:opacity-50">
         {pending ? "Sending…" : "Send message"}
       </button>
     </form>

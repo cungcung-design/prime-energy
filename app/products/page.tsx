@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Products — PRIME",
-  description:
-    "Four distinct personalities. One uncompromising formula. Find the one that hits different.",
+  description: "Explore the Flavors. Bold flavor. Zero sugar.",
 };
 
 export default function ProductsPage() {

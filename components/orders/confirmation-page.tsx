@@ -35,7 +35,7 @@ export function ConfirmationPage({ id }: { id: string }) {
       <div className="bg-ink text-paper">
         <ShopHeader />
         <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 py-16 sm:px-8 xl:px-16">
-          <h1 className="font-display text-[64px] leading-none font-extrabold">ORDER NOT ON RECORD</h1>
+          <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">ORDER NOT ON RECORD</h1>
           <Link href="/account?tab=orders" className="text-[13px] font-medium text-lime">
             View Order History →
           </Link>
@@ -66,10 +66,10 @@ export function ConfirmationPage({ id }: { id: string }) {
             <p className="font-mono text-[11px] leading-[1.5] text-lime">
               {order.statusLabel} / #{order.id} / {order.placedLabel}
             </p>
-            <h1 className="font-display text-[clamp(48px,8vw,88px)] leading-none font-extrabold">
-              {received ? "GOOD ENERGY INCOMING" : "ON THE RECORD"}
+            <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+              {received ? "ORDER CONFIRMED" : "PAYMENT PENDING"}
             </h1>
-            <p className="text-[14px] leading-[1.65] text-mist">
+            <p className="text-[15px] leading-[1.65] text-mist">
               {order.paymentState === "paid"
                 ? `Thanks, ${order.firstName}. Payment was received and the order is on record.`
                 : order.paymentState === "cancelled"
@@ -85,10 +85,10 @@ export function ConfirmationPage({ id }: { id: string }) {
           <div className="flex min-w-0 flex-1 flex-col gap-7">
             <div className="flex flex-col gap-[18px] bg-lime p-6 text-ink sm:p-7">
               <p className="font-mono text-[11px] leading-[1.5]">{order.deliveryTitle}</p>
-              <p className="font-display text-[clamp(40px,6vw,64px)] leading-none font-extrabold">{order.deliveryLabel}</p>
-              <p className="text-[13px] leading-[1.6]">
+              <p className="font-display text-[36px] leading-none font-extrabold sm:text-[44px]">{order.deliveryLabel}</p>
+              <p className="text-[15px] leading-[1.65]">
                 {received
-                  ? `Your ${order.cans} cans will ship together. In a live store, tracking is sent to ${order.email} once the order is on the move.`
+                  ? `Your ${order.cans} cans will ship together. Tracking is added to the order once it is on the move.`
                   : order.deliveredNote}
               </p>
             </div>
@@ -157,11 +157,11 @@ export function ConfirmationPage({ id }: { id: string }) {
                 Keep your orders in one place. Create an account with the same email to find this order in your Order History.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
-                <Link href={`/account?tab=orders#${order.id}`} className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink">
+                <Link href={`/account?tab=orders#${order.id}`} className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink">
                   View order details
                   <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />
                 </Link>
-                <a href="#fulfillment" className="inline-flex h-[54px] items-center justify-between border border-line bg-ink px-5 text-[13px] font-bold">
+                <a href="#fulfillment" className="inline-flex h-[54px] items-center justify-between border border-line bg-ink px-5 text-[12px] font-bold">
                   Track order
                   <Icon src="/icons/arrow-up-right-18.svg" width={18} height={18} />
                 </a>

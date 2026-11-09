@@ -1,61 +1,88 @@
-import { Icon } from "@/components/icon";
 import { footerGroups } from "@/lib/content";
+import Link from "next/link";
 
-const socials = ["INSTAGRAM ↗", "TIKTOK ↗", "YOUTUBE ↗"];
+const socials = ["INSTAGRAM", "TIKTOK", "YOUTUBE"];
 
 export function Footer() {
   return (
-    <footer id="support" className="bg-ink">
-      <div className="flex w-full flex-col gap-10 px-4 pt-12 pb-7 sm:px-8 lg:gap-12 lg:px-16 lg:pt-16">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex w-full flex-col gap-5 lg:w-[460px]">
-            <p className="font-display text-[62px] leading-none font-extrabold text-paper italic">
-              PRIME
+    <footer className="bg-ink text-paper">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-4 py-16 sm:px-8 lg:gap-14 lg:px-16 lg:py-20">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex max-w-[720px] flex-col gap-5">
+            <p className="font-display text-[28px] leading-none font-extrabold text-lime italic">PRIME</p>
+            <p className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+              ENERGY
+              <br />
+              <span className="text-lime italic">WITHOUT PERMISSION</span>
             </p>
-            <p className="text-[15px] text-mist">Leave ordinary behind</p>
-            <div className="flex flex-wrap gap-x-[22px] gap-y-2">
+          </div>
+          <div className="flex max-w-[380px] flex-col items-start gap-5">
+            <p className="text-[15px] leading-relaxed text-mist">Leave ordinary behind.</p>
+            <div className="flex flex-wrap gap-2">
               {socials.map((label) => (
-                <a key={label} href="#connect" className="font-mono text-[10px] text-paper">
+                <a
+                  key={label}
+                  href="#connect"
+                  className="inline-flex h-11 items-center border border-line px-3 font-mono text-[10px] tracking-wide text-paper transition-colors hover:border-lime hover:text-lime"
+                >
                   {label}
                 </a>
               ))}
             </div>
           </div>
-          {footerGroups.map((group) => (
+        </div>
+
+        <nav aria-label="Footer" className="grid border border-line sm:grid-cols-3">
+          {footerGroups.map((group, index) => (
             <div
               key={group.title}
-              id={group.title === "SUPPORT" ? "support" : group.title === "CONNECT" ? "connect" : undefined}
-              className="flex w-full flex-col gap-4 lg:w-[200px]"
+              id={group.title === "CONNECT" ? "connect" : undefined}
+              className={`flex flex-col gap-1 px-5 py-6 sm:px-7 sm:py-8 ${
+                index > 0 ? "border-t border-line sm:border-t-0 sm:border-l" : ""
+              }`}
             >
-              <p className="font-mono text-[10px] text-ash">{group.title}</p>
-              {group.links.map((link) => (
-                <a key={link.label} href={link.href} className="text-[12px] text-mist">
-                  {link.label}
-                </a>
-              ))}
+              <p className="font-mono text-[11px] tracking-wide text-ash">{group.title}</p>
+              <ul className="mt-2 flex flex-col">
+                {group.links.map((link) => (
+                  <li key={link.label}>
+                    {link.href.startsWith("mailto:") ? (
+                      <a
+                        href={link.href}
+                        className="flex min-h-11 items-center text-[15px] text-mist transition-colors hover:text-lime"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="flex min-h-11 items-center text-[15px] text-mist transition-colors hover:text-lime"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
-        </div>
-        <div className="flex flex-col gap-4 border-y border-line py-6 sm:flex-row sm:items-center sm:justify-between lg:py-[26px]">
-          <p className="font-display text-[clamp(32px,8vw,100px)] leading-none font-extrabold text-paper lg:whitespace-nowrap">
-            ENERGY WITHOUT PERMISSION
-          </p>
-          <span className="hidden sm:block">
-            <Icon src="/icons/arrow-up-right-large.svg" width={64} height={64} />
-          </span>
-        </div>
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <p className="font-mono text-[9px] text-ash">
+        </nav>
+
+        <div className="flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[10px] tracking-wide text-ash">
             © 2026 PRIME ENERGY. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex flex-wrap gap-x-[26px] gap-y-2 text-[10px] text-ash">
-            <a id="privacy" href="/privacy">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[12px]">
+            <Link id="privacy" href="/privacy" className="text-ash transition-colors hover:text-paper">
               Privacy policy
-            </a>
-            <a href="/terms">Terms of use</a>
-            <a href="/privacy">Cookie preferences</a>
+            </Link>
+            <Link href="/terms" className="text-ash transition-colors hover:text-paper">
+              Terms of use
+            </Link>
+            <Link href="/privacy" className="text-ash transition-colors hover:text-paper">
+              Cookie preferences
+            </Link>
           </div>
-          <p className="font-mono text-[10px] text-mist lg:shrink-0">UNITED STATES / USD ↓</p>
+          <p className="font-mono text-[10px] tracking-wide text-mist">United States · USD</p>
         </div>
       </div>
     </footer>

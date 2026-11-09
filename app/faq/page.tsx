@@ -18,17 +18,27 @@ const faqs = [
 
 export default function FaqPage() {
   return (
-    <InfoPage crumb="FAQS" title="QUESTIONS, ANSWERED" lede="These answers match how the store actually behaves.">
+    <InfoPage
+      crumb="FAQS"
+      title={
+        <>
+          QUESTIONS,
+          <br />
+          <span className="text-lime italic">ANSWERED</span>
+        </>
+      }
+      lede="Straight answers for accounts, checkout, stock, and orders."
+    >
       <div className="flex max-w-[860px] flex-col">
         {faqs.map(([question, answer]) => (
           <article key={question} className="flex flex-col gap-2 border-t border-line py-6">
-            <h2 className="text-lg font-semibold">{question}</h2>
-            <p className="text-[14px] leading-[1.7] text-mist">{answer}</p>
+            <h2 className="text-[23px] font-semibold text-paper">{question}</h2>
+            <p className="text-[15px] leading-[1.65] text-mist">{answer}</p>
           </article>
         ))}
       </div>
-      <Link href="/contact" className="text-[13px] font-bold text-lime">
-        Still stuck? Contact us →
+      <Link href="/contact" className="text-[15px] font-semibold text-lime">
+        Contact us
       </Link>
     </InfoPage>
   );

@@ -53,7 +53,7 @@ body {
   overscroll-behavior: contain;
   scroll-snap-type: x proximity;
   cursor: grab;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .drag-scroll.is-dragging {
@@ -76,6 +76,13 @@ body {
 
 .flavor-scroller {
   scrollbar-width: none;
+  touch-action: pan-x;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+  scroll-snap-type: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
 }
 
 @media (pointer: coarse) {
@@ -157,7 +164,7 @@ body {
 }
 
 .prime-nav {
-  animation: prime-nav 2s ease-out both;
+  opacity: 1;
 }
 
 .prime-hero-copy {

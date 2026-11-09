@@ -6,6 +6,7 @@ type ButtonProps = {
   href: string;
   icon: string;
   variant?: "primary" | "outline";
+  compact?: boolean;
 };
 
 const variants = {
@@ -18,11 +19,16 @@ export function Button({
   href,
   icon,
   variant = "primary",
+  compact = false,
 }: ButtonProps) {
+  const size = compact
+    ? "h-11 min-w-0 flex-1 justify-center gap-1.5 whitespace-nowrap px-2.5 text-[10px] lg:h-[54px] lg:flex-none lg:gap-6 lg:px-6 lg:text-[12px]"
+    : "h-[54px] shrink-0 gap-6 px-6 text-[12px]";
+
   return (
     <a
       href={href}
-      className={`inline-flex h-[54px] shrink-0 items-center gap-6 border px-6 text-[12px] font-bold ${variants[variant]}`}
+      className={`inline-flex items-center border font-bold ${size} ${variants[variant]}`}
     >
       {children}
       <Icon src={icon} width={20} height={20} />

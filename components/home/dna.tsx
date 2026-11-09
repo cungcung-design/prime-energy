@@ -8,15 +8,15 @@ export function Dna() {
       <div className="flex w-full flex-col lg:h-[660px] lg:flex-row">
         <div className="flex w-full flex-col justify-center gap-6 px-4 py-12 sm:px-8 lg:w-[720px] lg:shrink-0 lg:gap-[30px] lg:p-16">
           <SectionLabel>02 / BUILT FROM RESTLESSNESS</SectionLabel>
-          <h2 className="font-display text-[56px] leading-[0.94] font-extrabold text-paper sm:text-[72px] lg:text-[100px]">
+          <h2 className="font-display text-[40px] leading-[0.9] font-extrabold text-paper sm:text-[56px] lg:text-[72px]">
             NOT MADE
             <br />
-            TO FIT IN
+            <span className="text-lime italic">TO FIT IN</span>
           </h2>
-          <p className="text-[21px] leading-[1.45] text-paper">
+          <p className="text-[23px] font-semibold text-paper">
             For the ones who turn “what if” into “watch me.”
           </p>
-          <p className="max-w-[470px] text-[14px] leading-[1.75] text-mist">
+          <p className="max-w-[470px] text-[15px] leading-[1.65] text-mist">
             PRIME started with a simple refusal: ordinary wasn’t enough. Not in our
             cans. Not in our lives. We make uncompromising energy for a generation
             that moves on its own terms — from the first session to the last train

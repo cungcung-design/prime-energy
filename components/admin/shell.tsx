@@ -121,8 +121,8 @@ export function PageIntro({
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
       <div className="min-w-0 flex-1">
-        <h1 className="text-[32px] leading-[1.1] font-semibold">{title}</h1>
-        <p className="mt-2.5 text-sm leading-[1.6] text-mist">{text}</p>
+        <h1 className="font-display text-[40px] leading-[0.9] font-extrabold">{title}</h1>
+        <p className="mt-2.5 text-[15px] leading-[1.65] text-mist">{text}</p>
       </div>
       {action}
     </div>
@@ -130,9 +130,9 @@ export function PageIntro({
 }
 
 export function primaryButton(className = "") {
-  return `inline-flex min-h-12 items-center justify-center border border-lime bg-lime px-5 py-[13px] text-[13px] text-ink ${className}`;
+  return `inline-flex h-[54px] items-center justify-center border border-lime bg-lime px-5 text-[12px] font-bold text-ink ${className}`;
 }
 
 export function ghostButton(className = "") {
-  return `inline-flex min-h-12 items-center justify-center border border-line bg-ink px-5 py-[13px] text-[13px] text-paper ${className}`;
+  return `inline-flex h-[54px] items-center justify-center border border-line bg-ink px-5 text-[12px] font-bold text-paper ${className}`;
 }

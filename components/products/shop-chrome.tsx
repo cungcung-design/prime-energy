@@ -1,5 +1,6 @@
 "use client";
 
+import { Footer } from "@/components/footer";
 import { Icon } from "@/components/icon";
 import { useAccount } from "@/lib/account";
 import { useCart } from "@/lib/cart";
@@ -34,14 +35,14 @@ export function ShopHeader({
   const accountLabel = ready && account ? account.firstName : "Account";
 
   return (
-    <header className={`relative z-30 w-full border-b border-line lg:z-20 lg:mx-auto lg:max-w-[1440px] ${className}`}>
+    <header className={`relative z-30 w-full border-b border-line bg-ink lg:mx-auto lg:max-w-[1440px] ${className}`}>
       <div className="flex h-[72px] items-center justify-between px-4 sm:px-6 lg:h-[104px] lg:px-16">
         <Link href="/" className="inline-flex items-center font-display text-[32px] leading-none font-extrabold italic lg:text-[40px]">
           PRIME
         </Link>
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={`text-[14px] font-medium whitespace-nowrap ${current(link.href, pathname) ? "text-lime" : ""}`} aria-current={current(link.href, pathname) ? "page" : undefined}>
+            <Link key={link.href} href={link.href} className={`text-[14px] font-medium whitespace-nowrap text-paper ${current(link.href, pathname) ? "text-lime" : ""}`} aria-current={current(link.href, pathname) ? "page" : undefined}>
               {link.label}
             </Link>
           ))}
@@ -98,11 +99,13 @@ export function ShopHeader({
               </div>
             ) : null}
           </div>
-          <Link href={cartHref} className="inline-flex items-center gap-6 text-[14px] font-bold" aria-label={`Cart, ${count} items`}>
+          <Link href={cartHref} className="inline-flex items-center gap-6 text-[14px] font-bold" aria-label={count > 0 ? `Cart, ${count} items` : "Cart"}>
             <span className="hidden lg:inline">Cart</span>
             <span className="relative">
               <Icon src="/icons/shopping-bag.svg" width={20} height={20} />
-              <span className="absolute -top-2 left-4 font-mono text-[11px] font-normal leading-none text-lime">{count}</span>
+              {count > 0 ? (
+                <span className="absolute -top-2 left-4 font-mono text-[11px] font-normal leading-none text-lime">{count}</span>
+              ) : null}
             </span>
           </Link>
           <button
@@ -159,9 +162,6 @@ export function ShopHeader({
             {accountIcon ? <Icon src="/icons/user-round.svg" width={18} height={18} /> : null}
             {account ? "Account" : "Sign in"}
           </Link>
-          <Link href={cartHref} className="flex min-h-11 items-center text-[14px]" onClick={() => setMenuOpen(false)}>
-            Cart ({count})
-          </Link>
         </nav>
       ) : null}
     </header>
@@ -169,34 +169,5 @@ export function ShopHeader({
 }
 
 export function ShopFooter() {
-  return (
-    <footer className="border-t border-line">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-7 px-4 pt-10 pb-7 sm:px-8 lg:px-10 xl:px-16">
-        <div className="flex flex-col gap-4 text-mist sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[14px]">Leave ordinary behind</p>
-          <div className="flex flex-wrap gap-x-7 gap-y-3 text-[12px]">
-            <Link href="/products">Shop all flavors</Link>
-            <Link href="/about">About</Link>
-            <Link href="/formula">Formula</Link>
-            <Link href="/shipping">Shipping & returns</Link>
-            <Link href="/faq">FAQs</Link>
-            <Link href="/contact">Contact us</Link>
-          </div>
-        </div>
-        <p className="font-display text-[clamp(32px,6vw,64px)] leading-none font-extrabold">
-          GOOD ENERGY BAD INFLUENCE
-        </p>
-        <div className="h-px bg-line" />
-        <div className="flex flex-col gap-3 font-mono text-[11px] leading-[1.5] sm:flex-row sm:items-start sm:justify-between">
-          <p className="text-ash">© 2026 PRIME ENERGY. ALL RIGHTS RESERVED.</p>
-          <p className="text-ash">
-            <Link href="/privacy">PRIVACY POLICY</Link>
-            {" / "}
-            <Link href="/terms">TERMS OF USE</Link>
-          </p>
-          <p className="text-mist">UNITED STATES / USD ↓</p>
-        </div>
-      </div>
-    </footer>
-  );
+  return <Footer />;
 }
