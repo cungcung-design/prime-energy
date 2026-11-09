@@ -6,7 +6,7 @@ import { useCart } from "@/lib/cart";
 import { catalogFlavors, discoveryPack, type CatalogFlavor } from "@/lib/catalog";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 
 type Tab = "all" | "single" | "pack";
 type Availability = "all" | "available" | "unavailable";
@@ -103,70 +103,73 @@ export function CatalogPage() {
             {" / "}
             PRODUCTS
           </p>
-          <h1 className="font-display text-[clamp(40px,8vw,88px)] leading-none font-extrabold xl:text-[88px]">
-            CHOOSE YOUR FREQUENCY
+          <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+            DIFFERENT TASTE
+            <br />
+            <span className="text-lime italic">SAME INTENSITY</span>
           </h1>
-          <p className="max-w-[720px] text-[14px] leading-[1.65] text-mist">
-            Four distinct personalities. One uncompromising formula. Find the one that hits different.
-          </p>
         </div>
 
-        <div className="flex flex-col gap-5 border-y border-line py-5">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <label className="flex h-10 w-full items-center gap-2.5 border border-line bg-panel px-4 sm:w-[360px]">
-                <Icon src="/icons/search.svg" width={18} height={18} />
-                <span className="sr-only">Search flavors, packs, or ingredients</span>
-                <input
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search flavors, packs, or ingredients"
-                  className="w-full bg-transparent font-mono text-[11px] text-paper outline-none placeholder:text-ash"
-                />
-              </label>
-              <FilterSelect
-                label="Flavor"
-                value={flavor}
-                onChange={setFlavor}
-                options={[
-                  ["all", "Flavor"],
-                  ...catalogFlavors.map((item) => [item.slug, item.name] as const),
-                ]}
-              />
-              <FilterSelect
-                label="Availability"
-                value={availability}
-                onChange={(value) => setAvailability(value as Availability)}
-                options={[
-                  ["all", "Availability"],
-                  ["available", "In stock"],
-                  ["unavailable", "Unavailable"],
-                ]}
-              />
-            </div>
-            <div className="flex items-center gap-2.5">
-              <span className="font-mono text-[11px] text-ash">Sort</span>
+        <div className="flex flex-col gap-3 border-y border-line py-5">
+          <label className="flex h-12 w-full items-center gap-3 border border-line bg-panel px-4">
+            <Icon src="/icons/search.svg" width={18} height={18} />
+            <span className="sr-only">Search flavors, packs, or ingredients</span>
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search flavors, packs, or ingredients"
+              className="w-full bg-transparent font-mono text-[12px] text-paper outline-none placeholder:text-ash"
+            />
+          </label>
+          <div
+            className="flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            role="tablist"
+            aria-label="Product categories"
+          >
+            <TabButton active={tab === "all"} onClick={() => setTab("all")}>
+              All
+              <span className="font-mono text-[10px] opacity-70">5</span>
+            </TabButton>
+            <TabButton active={tab === "single"} onClick={() => setTab("single")}>
+              Flavors
+              <span className="font-mono text-[10px] opacity-70">4</span>
+            </TabButton>
+            <TabButton active={tab === "pack"} onClick={() => setTab("pack")}>
+              Pack
+              <span className="font-mono text-[10px] opacity-70">1</span>
+            </TabButton>
+          </div>
+          <div className="grid grid-cols-2 gap-2 lg:grid-cols-3">
+            <FilterSelect
+              label="Flavor"
+              value={flavor}
+              onChange={setFlavor}
+              options={[
+                ["all", "All flavors"],
+                ...catalogFlavors.map((item) => [item.slug, item.name] as const),
+              ]}
+            />
+            <FilterSelect
+              label="Availability"
+              value={availability}
+              onChange={(value) => setAvailability(value as Availability)}
+              options={[
+                ["all", "Any stock"],
+                ["available", "In stock"],
+                ["unavailable", "Unavailable"],
+              ]}
+            />
+            <div className="col-span-2 lg:col-span-1">
               <FilterSelect
                 label="Sort"
                 value={sort}
                 onChange={(value) => setSort(value as Sort)}
                 options={[
-                  ["featured", "Featured ↓"],
-                  ["name", "Name"],
+                  ["featured", "Sort: Featured"],
+                  ["name", "Sort: Name"],
                 ]}
               />
             </div>
-          </div>
-          <div className="flex flex-wrap gap-2.5" role="tablist" aria-label="Product categories">
-            <TabButton active={tab === "all"} onClick={() => setTab("all")}>
-              All products (5)
-            </TabButton>
-            <TabButton active={tab === "single"} onClick={() => setTab("single")}>
-              Single flavors (4)
-            </TabButton>
-            <TabButton active={tab === "pack"} onClick={() => setTab("pack")}>
-              Discovery pack (1)
-            </TabButton>
           </div>
         </div>
 
@@ -189,21 +192,23 @@ export function CatalogPage() {
 
         {packMatches ? (
           <section id="discovery-pack" className="flex scroll-mt-24 flex-col bg-panel lg:flex-row lg:gap-[44px]">
-            <div className="relative h-[240px] w-full sm:h-[300px] lg:h-[330px] lg:w-[560px] lg:shrink-0">
+            <div className="relative h-[300px] w-full sm:h-[320px] lg:h-[330px] lg:w-[560px] lg:shrink-0">
               <Image
                 src={discoveryPack.image}
                 alt={discoveryPack.alt}
                 fill
                 sizes="(max-width: 1023px) 100vw, 560px"
-                className="object-cover"
+                className="object-contain object-center lg:object-cover"
               />
             </div>
             <div className="flex flex-1 flex-col gap-[18px] px-5 py-8 lg:px-0 lg:py-8 lg:pr-10">
               <p className="font-mono text-[11px] leading-[1.5] text-lime">{discoveryPack.kicker}</p>
-              <h2 className="font-display text-[clamp(40px,6vw,54px)] leading-none font-extrabold">
-                {discoveryPack.name}
+              <h2 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+                FIND YOUR
+                <br />
+                <span className="text-lime italic">FIRST OBSESSION</span>
               </h2>
-              <p className="max-w-[520px] text-[14px] leading-[1.65] text-mist">{discoveryPack.description}</p>
+              <p className="max-w-[520px] text-[15px] leading-[1.65] text-mist">{discoveryPack.description}</p>
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="w-[120px]">
                   <p className="font-display text-[34px] leading-none font-extrabold">{live.discovery?.price ?? discoveryPack.price}</p>
@@ -213,7 +218,7 @@ export function CatalogPage() {
                   type="button"
                   onClick={addPack}
                   disabled={live.discovery ? !live.discovery.available : false}
-                  className="inline-flex h-[54px] flex-1 items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink disabled:opacity-50"
+                  className="inline-flex h-[54px] flex-1 items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink disabled:opacity-50"
                 >
                   {packAdded ? "Added to bag" : "Add discovery pack"}
                   <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />
@@ -240,14 +245,18 @@ export function CatalogPage() {
 
 function FlavorCard({ flavor }: { flavor: CatalogFlavor }) {
   return (
-    <article id={flavor.slug} className="flex min-w-0 flex-col scroll-mt-24">
-      <div className="relative h-[280px] overflow-hidden sm:h-[320px] xl:h-[350px]">
+    <article
+      id={flavor.slug}
+      className="group relative flex min-w-0 cursor-pointer flex-col scroll-mt-24"
+      style={{ "--card-accent": flavor.accent } as CSSProperties}
+    >
+      <div className="relative h-[300px] overflow-hidden sm:h-[320px] xl:h-[350px]">
         <Image
           src={flavor.image}
           alt={flavor.alt}
           fill
           sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 313px"
-          className="object-cover"
+          className="object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.04] xl:object-cover"
         />
         <p className="absolute top-4 left-4 font-mono text-[10px]" style={{ color: flavor.accent }}>
           {flavor.code}
@@ -263,15 +272,20 @@ function FlavorCard({ flavor }: { flavor: CatalogFlavor }) {
         <p className="font-mono text-[9px]" style={{ color: flavor.accent }}>
           {flavor.traits}
         </p>
-        <h2 className="font-display text-[35px] leading-none font-extrabold">{flavor.name}</h2>
-        <p className="min-h-[60px] text-[13px] leading-[1.65] text-mist">{flavor.description}</p>
+        <h2 className="font-display text-[28px] leading-none font-bold text-paper transition-colors duration-300 group-hover:text-[var(--card-accent)] lg:text-[35px]">
+          <Link href={`/products/${flavor.slug}`} prefetch={true} className="after:absolute after:inset-0 after:z-10">
+            {flavor.name}
+          </Link>
+        </h2>
+        <p className="min-h-[60px] text-[13px] leading-[1.6] text-mist">{flavor.description}</p>
         <div className="flex items-start justify-between">
-          <p className="font-mono text-[11px] leading-[1.5] text-ash">{flavor.pack}</p>
-          <p className="text-[14px] font-semibold">{flavor.price}</p>
+          <p className="font-mono text-[10px] text-ash">{flavor.pack}</p>
+          <p className="text-[13px] font-semibold text-paper">{flavor.price}</p>
         </div>
         <Link
           href={`/products/${flavor.slug}`}
-          className="flex h-[54px] items-center justify-between border border-line bg-ink px-5 text-[13px] font-bold"
+          prefetch={true}
+          className="relative z-20 flex h-[54px] items-center justify-between border border-line bg-ink px-5 text-[12px] font-bold transition-colors duration-300 group-hover:border-[var(--card-accent)]"
         >
           View flavor
           <Icon src="/icons/arrow-up-right-18.svg" width={18} height={18} />
@@ -287,7 +301,7 @@ function TabButton({
   onClick,
 }: {
   active: boolean;
-  children: string;
+  children: ReactNode;
   onClick: () => void;
 }) {
   return (
@@ -296,8 +310,8 @@ function TabButton({
       role="tab"
       aria-selected={active}
       onClick={onClick}
-      className={`inline-flex h-10 items-center border px-[18px] text-[12px] font-medium ${
-        active ? "border-lime bg-lime text-ink" : "border-line bg-panel text-mist"
+      className={`inline-flex h-11 shrink-0 items-center gap-2 border px-4 text-[13px] font-medium ${
+        active ? "border-lime bg-lime text-ink" : "border-line bg-panel text-paper"
       }`}
     >
       {children}
@@ -317,12 +331,12 @@ function FilterSelect({
   options: ReadonlyArray<readonly [string, string]>;
 }) {
   return (
-    <label className="relative inline-flex h-10 items-center border border-line bg-panel">
+    <label className="relative flex h-11 w-full min-w-0 flex-1 items-center border border-line bg-panel lg:h-10 lg:w-auto lg:flex-none">
       <span className="sr-only">{label}</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-10 appearance-none bg-transparent pr-9 pl-4 font-mono text-[11px] text-mist outline-none"
+        className="h-11 w-full appearance-none bg-transparent pr-9 pl-4 font-mono text-[11px] text-mist outline-none lg:h-10"
       >
         {options.map(([optionValue, optionLabel]) => (
           <option key={optionValue} value={optionValue} className="bg-ink text-paper">

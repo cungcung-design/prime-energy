@@ -1,5 +1,6 @@
 "use client";
 
+import { Footer } from "@/components/footer";
 import { ShopHeader } from "@/components/products/shop-chrome";
 import {
   demoAccount,
@@ -66,15 +67,15 @@ export function AccountPage() {
     <div className="bg-ink text-paper">
       <ShopHeader accountIcon={false} />
       <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 pt-8 pb-12 sm:px-8 lg:px-10 lg:pt-10 lg:pb-16 xl:px-16">
-        <p className="font-mono text-[12px] leading-[1.5] text-ash">
+        <p className="font-mono text-[11px] leading-[1.5] text-ash">
           <Link href="/">HOME</Link>
           {" / MY ACCOUNT"}
         </p>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex max-w-[880px] flex-col gap-4">
-            <h1 className="font-display text-[clamp(48px,8vw,80px)] leading-[1.1] font-extrabold">MY ACCOUNT</h1>
-            <p className="text-[14px] leading-[1.6] text-mist">
-              Manage your profile, preferences, and account details in one place.
+            <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">MY ACCOUNT</h1>
+            <p className="text-[15px] leading-[1.65] text-mist">
+              Your profile, orders, and preferences. One place.
             </p>
           </div>
           {signedIn ? (
@@ -168,7 +169,7 @@ function ProfileTab({
   return (
     <div className="flex flex-col gap-7 xl:flex-row xl:items-start">
       <section className="flex min-w-0 flex-1 flex-col gap-5 border border-line bg-panel p-6">
-        <h2 className="text-[18px] leading-[1.1] font-semibold">Personal details</h2>
+        <h2 className="font-display text-[28px] leading-none font-bold">Personal details</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="FIRST NAME" value={draft.firstName} onChange={(firstName) => setDraft({ ...draft, firstName })} />
           <Field label="LAST NAME" value={draft.lastName} onChange={(lastName) => setDraft({ ...draft, lastName })} />
@@ -193,7 +194,7 @@ function ProfileTab({
         />
         {editingPassword ? null : (
           <section className="flex flex-col gap-4 border border-line bg-panel p-6">
-            <h2 className="text-[18px] leading-[1.1] font-semibold">Preferences</h2>
+            <h2 className="font-display text-[28px] leading-none font-bold">Preferences</h2>
             <Preference label="NEWSLETTER" value={draft.newsletter ? "Subscribed" : "Not subscribed"} />
             <Preference label="ORDER UPDATES" value="Email" />
           </section>
@@ -240,7 +241,7 @@ function PasswordPanel({
 
   return (
     <section className="flex flex-col gap-4 border border-line bg-panel p-6">
-      <h2 className="text-[18px] leading-[1.1] font-semibold">Password & preferences</h2>
+      <h2 className="font-display text-[28px] leading-none font-bold">Password & preferences</h2>
       {editing ? (
         <>
           <div className="flex items-start justify-between gap-4 text-[13px]">
@@ -317,7 +318,7 @@ function AddressTab({
 }) {
   return (
     <section className="flex w-full max-w-[760px] flex-col gap-5 border border-line bg-panel p-6">
-      <h2 className="text-[18px] leading-[1.1] font-semibold">Default shipping address</h2>
+      <h2 className="font-display text-[28px] leading-none font-bold">Default shipping address</h2>
       <p className="w-fit bg-[#202915] px-[9px] py-1.5 text-[11px] font-medium text-lime">Default address</p>
       <p className="text-[14px] leading-[1.6] text-mist">
         {`${draft.firstName} ${draft.lastName}`}
@@ -385,7 +386,7 @@ function OrdersTab() {
   return (
     <section className="flex flex-col gap-5">
       <div className="flex items-start justify-between gap-4">
-        <h2 className="font-display text-[40px] leading-[1.1] font-extrabold">YOUR ORDERS</h2>
+        <h2 className="font-display text-[28px] leading-none font-bold lg:text-[35px]">YOUR ORDERS</h2>
         <p className="font-mono text-[11px] leading-[1.5] text-ash">
           {orders.length} {orders.length === 1 ? "ORDER" : "ORDERS"}
         </p>
@@ -531,26 +532,7 @@ function Preference({ label, value }: { label: string; value: string }) {
 }
 
 function AccountFooter() {
-  return (
-    <footer className="border-t border-line">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-4 py-6 sm:px-8 lg:px-10 xl:px-16">
-        <div className="flex flex-col gap-3 text-mist sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[14px]">Leave ordinary behind</p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[12px]">
-            <Link href="/products">Shop</Link>
-            <Link href="/account">Account</Link>
-            <a href="mailto:hello@prime.energy">hello@prime.energy</a>
-          </div>
-        </div>
-        <div className="h-px bg-line" />
-        <div className="flex flex-col gap-3 font-mono text-[12px] leading-[1.5] text-ash sm:flex-row sm:items-start sm:justify-between">
-          <p>© 2026 PRIME ENERGY. ALL RIGHTS RESERVED.</p>
-          <p>PRIVACY POLICY / TERMS OF USE</p>
-          <p>United States · USD</p>
-        </div>
-      </div>
-    </footer>
-  );
+  return <Footer />;
 }
 
 function titleCase(value: string) {

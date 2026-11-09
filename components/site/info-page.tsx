@@ -9,8 +9,8 @@ export function InfoPage({
   children,
 }: {
   crumb: string;
-  title: string;
-  lede: string;
+  title: ReactNode;
+  lede?: ReactNode;
   children: ReactNode;
 }) {
   return (
@@ -23,8 +23,8 @@ export function InfoPage({
             {" / "}
             {crumb}
           </p>
-          <h1 className="font-display text-[clamp(40px,8vw,80px)] leading-[0.95] font-extrabold">{title}</h1>
-          <p className="max-w-[720px] text-[14px] leading-[1.65] text-mist">{lede}</p>
+          <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">{title}</h1>
+          {lede ? <p className="max-w-[720px] text-[15px] leading-[1.65] text-mist">{lede}</p> : null}
         </div>
         {children}
       </main>

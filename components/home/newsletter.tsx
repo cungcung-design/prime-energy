@@ -36,10 +36,12 @@ export function Newsletter() {
       <div className="flex w-full flex-col gap-8 px-4 py-12 sm:px-8 lg:flex-row lg:items-center lg:gap-[100px] lg:px-16 lg:py-[72px]">
         <div className="flex w-full flex-col gap-[22px] lg:w-[650px] lg:shrink-0">
           <SectionLabel tone="light">STAY IN THE LOOP NOT IN LINE</SectionLabel>
-          <h2 className="font-display text-[40px] leading-[0.94] font-extrabold sm:text-[56px] lg:text-[72px]">
-            JOIN THE INNER CIRCUIT
+          <h2 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+            JOIN THE
+            <br />
+            <span className="italic">INNER CIRCUIT</span>
           </h2>
-          <p className="text-[14px] leading-[1.5]">
+          <p className="text-[15px] leading-[1.65]">
             First access to new drops, underground events and a little disruption.
           </p>
         </div>

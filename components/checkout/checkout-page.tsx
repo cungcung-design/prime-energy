@@ -135,16 +135,19 @@ export function CheckoutPage() {
             {" / "}
             CHECKOUT
           </p>
-          <h1 className="font-display text-[clamp(48px,8vw,88px)] leading-none font-extrabold xl:text-[88px]">
-            MAKE IT YOURS
+          <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+            CHECKOUT
           </h1>
+          <p className="text-[15px] leading-[1.65] text-mist">
+            Same cans. Same formula. Confirm the details and you’re set.
+          </p>
         </div>
 
         {lines.length === 0 ? (
           <div className="border border-line bg-panel p-6">
-            <p className="text-[14px] text-mist">Your bag is empty.</p>
-            <Link href="/products" className="mt-4 inline-flex text-[13px] font-medium text-lime">
-              ← Continue shopping
+            <p className="text-[15px] leading-[1.65] text-mist">Your bag is empty.</p>
+            <Link href="/products" className="mt-4 inline-flex text-[15px] font-semibold text-lime">
+              Explore the Flavors
             </Link>
           </div>
         ) : (
@@ -380,7 +383,7 @@ export function CheckoutPage() {
               <button
                 type="submit"
                 disabled={pending}
-                className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink disabled:opacity-60"
+                className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink disabled:opacity-60"
               >
                 {pending ? "Placing order…" : `Place order — ${money(totals.total)}`}
                 <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />

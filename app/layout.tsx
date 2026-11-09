@@ -26,9 +26,9 @@ const plex = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PRIME — Full Tilt, No Limit",
+  title: "PRIME — Pure Energy",
   description:
-    "Clean, electric energy for those who go all in. Bold flavor. Zero sugar. Nothing holding you back.",
+    "Experience the power of PRIME Energy. Bold flavor. Zero sugar. Made to fuel your ambition and elevate every moment.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${barlow.variable} ${inter.variable} ${plex.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-ink font-sans text-paper">
+      <body className="min-h-full bg-ink font-sans text-paper" suppressHydrationWarning>
         <StoreFrame>{children}</StoreFrame>
       </body>
     </html>

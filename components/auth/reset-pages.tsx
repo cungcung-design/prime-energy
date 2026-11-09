@@ -20,8 +20,8 @@ export function ForgotPasswordPage() {
           {" / "}
           RESET
         </p>
-        <h1 className="font-display text-[clamp(48px,8vw,76px)] leading-none font-extrabold">RESET THE LOCK</h1>
-        <p className="text-[14px] leading-[1.65] text-mist">
+        <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">RESET YOUR PASSWORD</h1>
+        <p className="text-[15px] leading-[1.65] text-mist">
           Enter the email on your account. If it matches, a reset link is prepared. Mail is sent only when an email
           provider is configured.
         </p>
@@ -54,7 +54,7 @@ export function ForgotPasswordPage() {
           </label>
           {error ? <p className="text-[12px] text-lime">{error}</p> : null}
           {message ? <p className="text-[12px] leading-[1.5] text-mist">{message}</p> : null}
-          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink">
+          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink">
             Send reset link
             <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />
           </button>
@@ -75,7 +75,7 @@ export function ResetPasswordPage() {
     <div className="bg-ink text-paper">
       <ShopHeader />
       <main className="mx-auto flex w-full max-w-[720px] flex-col gap-6 px-4 py-16 sm:px-8">
-        <h1 className="font-display text-[clamp(48px,8vw,76px)] leading-none font-extrabold">CHOOSE A NEW PASSWORD</h1>
+        <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">CHOOSE A NEW PASSWORD</h1>
         <form
           className="flex flex-col gap-6"
           onSubmit={(event) => {
@@ -109,7 +109,7 @@ export function ResetPasswordPage() {
               {message} <Link href="/sign-in" className="text-lime">Sign in →</Link>
             </p>
           ) : null}
-          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink">
+          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink">
             Update password
             <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />
           </button>

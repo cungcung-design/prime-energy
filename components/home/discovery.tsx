@@ -17,12 +17,12 @@ export function Discovery() {
         </div>
         <div className="flex flex-1 flex-col justify-center gap-6 px-4 py-12 sm:px-8 lg:p-16">
           <SectionLabel>THE DISCOVERY DROP / 12-PACK</SectionLabel>
-          <h2 className="font-display text-[48px] leading-[0.94] font-extrabold text-paper sm:text-[64px] lg:text-[76px]">
+          <h2 className="font-display text-[40px] leading-[0.9] font-extrabold text-paper sm:text-[56px] lg:text-[72px]">
             FIND YOUR
             <br />
-            FIRST OBSESSION
+            <span className="text-lime italic">FIRST OBSESSION</span>
           </h2>
-          <p className="max-w-[440px] text-[14px] leading-[1.65] text-mist">
+          <p className="max-w-[440px] text-[15px] leading-[1.65] text-mist">
             All four flavors. Three of each. Your all-access pass to the PRIME
             universe. Start here. Go anywhere.
           </p>

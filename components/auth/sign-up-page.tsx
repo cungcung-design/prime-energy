@@ -31,14 +31,14 @@ export function SignUpPage() {
         <section className="relative min-h-[520px] w-full overflow-hidden p-7 sm:p-9 xl:h-[792px] xl:w-[600px] xl:shrink-0">
           <Image src="/images/account/sign-up.png" alt="PRIME can in a dark campaign still" fill sizes="600px" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(9,11,10,0.25)] to-[rgba(9,11,10,0.96)]" />
-          <p className="relative font-mono text-[11px] leading-[1.5] text-lime">PRIME / THE INNER CIRCUIT</p>
+          <p className="relative font-mono text-[11px] leading-[1.5] text-lime">STAY IN THE LOOP NOT IN LINE</p>
           <div className="absolute inset-x-7 bottom-8 flex flex-col gap-[22px] sm:inset-x-9 sm:bottom-10">
-            <h2 className="font-display text-[clamp(56px,8vw,94px)] leading-none font-extrabold">
-              YOUR ENERGY
+            <h2 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px]">
+              JOIN THE
               <br />
-              YOUR SPACE
+              <span className="text-lime italic">INNER CIRCUIT</span>
             </h2>
-            <p className="text-[14px] leading-[1.65]">A little less admin. A lot more momentum.</p>
+            <p className="text-[15px] leading-[1.65]">First access to new drops, underground events and a little disruption.</p>
             <Benefit>01 / Faster checkout, saved details</Benefit>
             <Benefit>02 / Every order, one place</Benefit>
             <Benefit>03 / Drop news, only if you want it</Benefit>
@@ -70,11 +70,15 @@ export function SignUpPage() {
             {" / "}
             SIGN UP
           </p>
-          <h1 className="font-display text-[clamp(52px,8vw,76px)] leading-none font-extrabold">JOIN THE CIRCUIT</h1>
-          <p className="text-[13px] text-mist">
+          <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+            JOIN THE
+            <br />
+            <span className="text-lime italic">INNER CIRCUIT</span>
+          </h1>
+          <p className="text-[15px] leading-[1.65] text-mist">
             Already have an account?{" "}
-            <Link href="/sign-in" className="font-medium text-lime">
-              Sign In →
+            <Link href="/sign-in" className="font-semibold text-lime">
+              Welcome back
             </Link>
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -122,7 +126,7 @@ export function SignUpPage() {
             By creating an account, you agree to our Terms of Use and acknowledge our Privacy Policy.
           </p>
           {error ? <p className="text-[12px] leading-[1.5] text-lime">{error}</p> : null}
-          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink">
+          <button type="submit" className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink">
             Create Account
             <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />
           </button>

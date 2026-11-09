@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Support — PRIME",
-  description: "Shipping, order questions, and a way to reach the PRIME store.",
+  description: "Shipping, orders, and a direct line to PRIME. Nothing you don’t need.",
 };
 
 const links = [
@@ -16,13 +16,23 @@ const links = [
 
 export default function SupportPage() {
   return (
-    <InfoPage crumb="SUPPORT" title="HELP WHEN YOU NEED IT" lede="Shipping, account, and order questions live here. Each link opens a real page.">
+    <InfoPage
+      crumb="SUPPORT"
+      title={
+        <>
+          HERE WHEN
+          <br />
+          <span className="text-lime italic">YOU NEED IT</span>
+        </>
+      }
+      lede="Shipping, orders, and a direct line. Nothing you don’t need."
+    >
       <div className="grid gap-4 md:grid-cols-2">
         {links.map((link) => (
           <Link key={link.href} href={link.href} className="flex flex-col gap-3 border border-line bg-panel p-6">
-            <span className="text-lg font-semibold">{link.title}</span>
-            <span className="text-[13px] leading-[1.6] text-mist">{link.copy}</span>
-            <span className="text-[13px] font-medium text-lime">Open →</span>
+            <span className="font-display text-[28px] leading-none font-bold">{link.title}</span>
+            <span className="text-[15px] leading-[1.65] text-mist">{link.copy}</span>
+            <span className="text-[15px] font-semibold text-lime">Open</span>
           </Link>
         ))}
       </div>

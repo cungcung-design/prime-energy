@@ -195,19 +195,19 @@ export function CartPage() {
             {" / "}
             CART
           </p>
-          <h1 className="font-display text-[clamp(48px,8vw,88px)] leading-none font-extrabold xl:text-[88px]">
-            YOUR NEXT CHARGE
+          <h1 className="font-display text-[40px] leading-[0.9] font-extrabold sm:text-[56px] lg:text-[72px]">
+            YOUR BAG
           </h1>
-          <p className="text-[14px] leading-[1.65] text-mist">
-            {totals.packs} {totals.packs === 1 ? "pack" : "packs"}. {totals.cans} cans. Good energy, incoming.
+          <p className="text-[15px] leading-[1.65] text-mist">
+            {totals.packs} {totals.packs === 1 ? "pack" : "packs"}. {totals.cans} cans. Bold flavor. Zero sugar.
           </p>
         </div>
 
         {lines.length === 0 ? (
           <div className="flex flex-col gap-4 border border-line bg-panel p-6">
-            <p className="text-[14px] text-mist">Your bag is empty.</p>
-            <Link href="/products" className="text-[13px] font-medium text-lime">
-              ← Continue shopping
+            <p className="text-[15px] leading-[1.65] text-mist">Your bag is empty.</p>
+            <Link href="/products" className="text-[15px] font-semibold text-lime">
+              Explore the Flavors
             </Link>
           </div>
         ) : (
@@ -302,7 +302,7 @@ export function CartPage() {
               {promoNote ? <p className="text-[11px] leading-[1.5] text-ash">{promo ? `${promo}. ` : ""}{promoNote}</p> : null}
               <Link
                 href="/checkout"
-                className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[13px] font-bold text-ink"
+                className="inline-flex h-[54px] items-center justify-between border border-lime bg-lime px-5 text-[12px] font-bold text-ink"
               >
                 Continue to Checkout
                 <Icon src="/icons/arrow-up-right-dark-18.svg" width={18} height={18} />
